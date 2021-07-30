@@ -1,4 +1,5 @@
 set PATH="C:\Program Files\7-Zip";D:\cmake-3.20.5-windows-x86_64\bin;D:\api\py396;D:\Qt\5.13.2\msvc2017_64\bin;%PATH%;
+set MYHOME=%~dp0
 cd src 
 7z x -aos src.7z
 7z x -aos QGIS-final-3_20_1.7z
@@ -31,10 +32,12 @@ cmake --build project64\libz --config Debug --target INSTALL
 
 cd src/sqlite-autoconf-3360000
 nmake -f Makefile.msc DEBUG=2 
+copy /Y sqlite3staticd.lib ..\..\output64\lib
 cd ../../
 
 cd src/iconv-for-windows-master
 nmake -f Makefile DEBUG=1 
+copy /Y iconv.lib ..\..\output64\lib
 cd ../../
 
 cmake -G "Visual Studio 15 2017" -A x64 -S src/exiv2-0.27.4-Source -B project64\exiv2 -D CMAKE_INSTALL_PREFIX=output64
@@ -60,10 +63,12 @@ cmake --build project64\geos --config Debug --target INSTALL
 
 cd  src/freexl-1.0.6
 nmake -f makefile64.vc DEBUG=1 
+nmake -f makefile64.vc DEBUG=1 install
 cd ../../
 
 cd  src/librttopo
-nmake -f makefile.vc DEBUG=1 
+nmake -f makefile.vc DEBUG=1
+nmake -f makefile.vc DEBUG=1 install 
 cd ../../
 
 cmake -G "Visual Studio 15 2017" -A x64 -S src/libxml2-v2.9.12 -B project64\libxml2 -D CMAKE_INSTALL_PREFIX=output64
@@ -71,9 +76,10 @@ cmake --build project64\libxml2 --config Debug --target INSTALL
 
 cd  src/libspatialite-5.0.1
 nmake -f makefile64.vc DEBUG=1 
+nmake -f makefile64.vc DEBUG=1 install
 cd ../../
 
-set MYHOME=%~dp0
+
 cd  src/gdal-3.3.1
 nmake -f makefile.vc MSVC_VER=1900 DEBUG=1 WIN64=1  
 nmake -f makefile.vc MSVC_VER=1900 DEBUG=1 WIN64=1  install
