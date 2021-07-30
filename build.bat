@@ -6,7 +6,7 @@ cd src
 cd ..
 mkdir output64
 cd output64
-curl -O https://github.com/kenash0625/qgis-minimalistic-build/releases/download/output64/output64.zip
+curl -L --output output64.zip https://github.com/kenash0625/qgis-minimalistic-build/releases/download/output64/output64.zip
 7z x -aos output64.zip
 del /F /Q output64.zip
 cd ..
