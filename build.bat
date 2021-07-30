@@ -80,6 +80,5 @@ nmake -f makefile.vc MSVC_VER=1900 DEBUG=1 WIN64=1  install
 nmake -f makefile.vc MSVC_VER=1900 DEBUG=1 WIN64=1  devinstall
 cd ../../
 
-cmake -G "Visual Studio 15 2017" -A x64 -S src/QGIS-final-3_20_1 -B project64\qgis -D CMAKE_INSTALL_PREFIX=output64 -D MYQTDIR="D:/Qt/5.13.2/msvc2017_64/lib/cmake/"
-cmake --build project64\qgis --config Debug --target INSTALL
+
 
